@@ -1,11 +1,14 @@
-const express = require('express');
-const bodyParser = require('body-parser');
+const express = require("express");
+const bodyParser = require("body-parser");
 const parserMiddleware = bodyParser.json();
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
+const cors = require("cors");
+const middleware = cors();
 
-const adsRouter = require('./ads/router');
+const adsRouter = require("./ads/router");
 
+app.use(middleware);
 app.use(parserMiddleware);
 app.use(adsRouter);
 
